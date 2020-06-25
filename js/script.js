@@ -1,9 +1,24 @@
 $(document).ready(function() {
 
-  $(document).on('click', '.squere', function() {
-    var codesto = $(this);
+  // ================================
+  // =========== BONUS ==============
 
-    // codesto.addClass('yellow')
+  // Struttura dinamica con handlebars
+  var source = $('#entry-template').html();
+  var template = Handlebars.compile(source);
+
+  var context = { number: ''};
+  var html = template(context);
+
+  for (var i = 0; i < 36; i++) {
+    $('.container').append(html);
+  }
+
+
+  // Evento click sul quadrato
+  $(document).on('click', '.squere', function() {
+    // Codesto XD
+    var codesto = $(this);
 
     // CHIAMATA AJAX
     $.ajax(
@@ -17,12 +32,18 @@ $(document).ready(function() {
           codesto.find('.number').text(numero)
           // Struttura condizionata
           if (numero <= 5) {
+            // Resetto le classi
             codesto.removeClass('yellow');
             codesto.removeClass('green');
+
+            // Aggiungo la classe corrispondente
             codesto.addClass('yellow');
           } else {
+            // Resetto le classi
             codesto.removeClass('yellow');
             codesto.removeClass('green');
+
+            // Aggiungo la classe corrispondente
             codesto.addClass('green');
           }
         },
